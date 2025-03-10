@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS school_management;
+-- CREATE DATABASE IF NOT EXISTS school_management;
 
-USE school_management;
+-- USE school_management;
 
 CREATE TABLE IF NOT EXISTS schools (
     id INT AUTO_INCREMENT PRIMARY KEY,

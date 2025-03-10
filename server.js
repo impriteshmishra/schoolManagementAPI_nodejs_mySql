@@ -11,6 +11,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+//test
+
+app.use("/",()=>{
+  res.status(200).json({message: "hello from backend"})
+})
+
 // here is api 
 app.use("/api/v1/school", schoolRoutes);
 

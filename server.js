@@ -13,7 +13,7 @@ app.use(express.json());
 
 //test
 
-app.use("/",(req,res)=>{
+app.get("/",(req,res)=>{
  return res.status(200).json({message: "hello from backend"})
 })
 

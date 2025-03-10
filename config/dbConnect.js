@@ -4,7 +4,7 @@ import fs from "fs";
 
 dotenv.config();
 
-const connectDB = async ()=>{
+const connectDB = async () => {
     try {
         const db = await mysql.createConnection({
             host: process.env.DB_HOST,
@@ -13,19 +13,22 @@ const connectDB = async ()=>{
             database: process.env.DB_NAME,
             multipleStatements: true,
         });
-         
+
         console.log("Database connected successfully.");
-        //creating db if not exist
-        await db.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME}`)
-        console.log("db is ready");
-        
-        await db.changeUser({database:process.env.DB_NAME})
- 
-        const schema = fs.readFileSync("schema.sql", "utf8")
-        await db.query(schema);
-        console.log("schema applied");
-        
-       return db;        
+        // //creating db if not exist
+        // await db.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME}`)
+        // console.log("db is ready");
+
+        // await db.changeUser({database:process.env.DB_NAME})
+
+        try {
+            const schema = fs.readFileSync("schema.sql", "utf8")
+            await db.query(schema);
+            console.log("schema applied");
+        } catch (error) {
+            console.error("error applying schema.")
+        }
+        return db;
     } catch (error) {
         console.error("error while connecting db", error);
         process.exit(1);

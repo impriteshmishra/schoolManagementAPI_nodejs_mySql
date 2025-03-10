@@ -14,7 +14,7 @@ app.use(express.json());
 //test
 
 app.use("/",()=>{
-  res.status(200).json({message: "hello from backend"})
+ return res.status(200).json({message: "hello from backend"})
 })
 
 // here is api 
